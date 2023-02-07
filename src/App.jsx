@@ -1,6 +1,6 @@
 import React from 'react'
-import { Hero } from './components';
-import { visinhoapi } from "./data/data.js";
+import { Hero, Sales } from './components';
+import { visinhoapi, popularsales, topratesales } from "./data/data.js";
 
 
 const App = () => {
@@ -8,6 +8,8 @@ const App = () => {
     <>
       <main>
         <Hero visinhoapi={visinhoapi}/>
+        <Sales endpoint={popularsales}/>
+        <Sales endpoint={topratesales}/>
       </main>
     </>
   )
