@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     cartState: false,
+    cartItems: []
 };
 
 const CartSlice = createSlice({
@@ -13,11 +14,21 @@ const CartSlice = createSlice({
         },
         setCloseCart: (state, action) => {
             state.cartState = action.payload.cartState;
+        },
+        setAddItemToCart: (state, action) => {
+            const itemIndex = state.cartItems.findIndex((item) => item.id === action.payload.id);
+
+            if(itemIndex >= 0){
+                state.cartItems[itemIndex].cardQuantity += 1;
+            }else{
+            const temp = {...action.payload, cardQuantity: 1} 
+            state.cartItems.push(temp)
+            }
         }
     }
 });
 
-export const { setOpenCart, setCloseCart } = CartSlice.actions;
+export const { setOpenCart, setCloseCart, setAddItemToCart } = CartSlice.actions;
 
 export const selectCartState = (state) => state.cart.cartState;
 
