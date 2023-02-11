@@ -21,10 +21,10 @@ const CartSlice = createSlice({
             const itemIndex = state.cartItems.findIndex((item) => item.id === action.payload.id);
 
             if(itemIndex >= 0){
-                state.cartItems[itemIndex].cardQuantity += 1;
+                state.cartItems[itemIndex].cartQuantity += 1;
                 toast.success(`Item QTY Increased`);
             }else{
-            const temp = {...action.payload, cardQuantity: 1} 
+            const temp = {...action.payload, cartQuantity: 1} 
             state.cartItems.push(temp);
 
             toast.success(`${action.payload.title} added to Cart successfully!`)
@@ -37,5 +37,6 @@ const CartSlice = createSlice({
 export const { setOpenCart, setCloseCart, setAddItemToCart } = CartSlice.actions;
 
 export const selectCartState = (state) => state.cart.cartState;
+export const selectCartItems = (state) => state.cart.cartItems;
 
 export default CartSlice.reducer;
